@@ -12,6 +12,13 @@
         {
             return (a % 2 != 0);
         }
+
+        //Adding two double Numbers
+
+        public double AddTwoDoubles(double a, double b)
+        {
+            return a + b;
+        }
     }
 
 

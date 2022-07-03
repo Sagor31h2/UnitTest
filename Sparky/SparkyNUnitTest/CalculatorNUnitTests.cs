@@ -52,5 +52,30 @@ namespace Sparky
 
             Assert.That(result, Is.EqualTo(false));
         }
+
+        //combine with expected result
+        [Test]
+        [TestCase(10, ExpectedResult = false)]
+        [TestCase(11, ExpectedResult = true)]
+        public bool Isodd_inputNumer_GetResult(int a)
+        {
+            var calculator = new Calculator();
+            return calculator.IsOdd(a);
+        }
+
+        //Add two double values
+        [Test]
+        [TestCase(12.1, 2.4)]
+        public void AddDouble_InputTwoDoubleNumbers_GetCorrectAddition(double a, double b)
+        {   //Arrange
+            var calculator = new Calculator();
+
+            //Act
+            double result = calculator.AddTwoDoubles(a, b);
+
+            //Assert
+            Assert.AreEqual(14.5, result);
+        }
+
     }
 }
