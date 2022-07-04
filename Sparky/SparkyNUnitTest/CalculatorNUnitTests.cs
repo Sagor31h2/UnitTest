@@ -66,6 +66,9 @@ namespace Sparky
         //Add two double values
         [Test]
         [TestCase(12.1, 2.4)]
+        [TestCase(12.1, 2.9)]
+        [TestCase(12.1, 1.4)]
+
         public void AddDouble_InputTwoDoubleNumbers_GetCorrectAddition(double a, double b)
         {   //Arrange
             var calculator = new Calculator();
@@ -74,7 +77,7 @@ namespace Sparky
             double result = calculator.AddTwoDoubles(a, b);
 
             //Assert
-            Assert.AreEqual(14.5, result);
+            Assert.AreEqual(14.5, result, 1);
         }
 
     }
