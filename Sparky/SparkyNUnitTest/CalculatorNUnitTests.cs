@@ -5,6 +5,13 @@ namespace Sparky
     [TestFixture]
     public class CalculatorNUnitTests
     {
+        private Calculator _calculator;
+        [SetUp]
+        public void Setup()
+        {
+            _calculator = new Calculator();
+        }
+
         [Test]
         public void AddNumbers_InputTwoNumbers_GetCorrectAddition()
         {   //Arrange
@@ -80,5 +87,19 @@ namespace Sparky
             Assert.AreEqual(14.5, result, 1);
         }
 
+
+        //Number Range
+        [Test]
+        public void InputNumber_And_Get_CorrectOddRange()
+        {
+            var listOfOdd = new List<int>()
+            {
+                5,7,9
+            };
+
+            var result = _calculator.GetOddRange(5, 10);
+
+            Assert.That(result, Is.EqualTo(listOfOdd));
+        }
     }
 }
