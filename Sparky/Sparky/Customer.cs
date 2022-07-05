@@ -2,9 +2,11 @@
 {
     public class Customer
     {
+        public string? Greet { get; set; }
         public string GreetByName(string firstName, string lastName)
         {
-            return "Hello " + firstName + " " + lastName;
+            Greet = "Hello " + firstName + " " + lastName;
+            return Greet;
         }
     }
 }
