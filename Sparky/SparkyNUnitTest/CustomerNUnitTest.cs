@@ -21,8 +21,12 @@ namespace Sparky
 
             var greet = _customer.GreetByName(firstName, lastName);
 
-            Assert.That(greet, Is.EqualTo("Hello Kamrul Hassan"));
-            Assert.That(greet, Does.Contain("Hello").IgnoreCase);
+            //Multiple assert
+            Assert.Multiple(() =>
+            {
+                Assert.That(greet, Is.EqualTo("Hello Kamrul Hassan"));
+                Assert.That(greet, Does.Contain("Hello").IgnoreCase);
+            });
 
         }
 
@@ -33,6 +37,30 @@ namespace Sparky
         {
 
             Assert.IsNull(_customer.Greet);
+        }
+
+        //chceking with empty last name
+        [Test]
+        public void Input_EmptyLastName_GetNotNull()
+        {
+            _customer.GreetByName("sagor", "");
+
+            var greet = _customer.Greet;
+
+            Assert.Multiple(() =>
+            {
+                Assert.IsNotNull(greet);
+                Assert.IsFalse(string.IsNullOrEmpty(greet));
+            });
+        }
+
+        //Testing exception
+        [Test]
+        public void GreetChecker_InputEmptyFirstName_GetThrowException()
+        {
+            var exception = Assert.Throws<ArgumentException>(() => _customer.GreetByName("", "spark"));
+
+            Assert.AreEqual(exception?.Message, "Empty or contains white space in first name");
         }
     }
 }
