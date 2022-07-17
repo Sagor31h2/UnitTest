@@ -61,6 +61,28 @@ namespace Sparky
             var exception = Assert.Throws<ArgumentException>(() => _customer.GreetByName("", "spark"));
 
             Assert.AreEqual(exception?.Message, "Empty or contains white space in first name");
+            //withot message
+            Assert.That(() => _customer.GreetByName(" ", "spark"), Throws.ArgumentException);
+        }
+
+        //checking customerType less then 100 order
+        [Test]
+        public void CustomerType_CreateCustomerWithLessThan100Orders_BasicCustomer()
+        {
+            _customer.OrderTotal = 15;
+            var result = _customer.GetCustomerByDetails();
+            Assert.That(result, Is.TypeOf<BasicCustomer>());
+
+        }
+
+        //checking customerType greater than 100 order
+        [Test]
+        public void CustomerType_CreateCustomerWithGreaterThan100Orders_PlatinumCustomer()
+        {
+            _customer.OrderTotal = 150;
+            var result = _customer.GetCustomerByDetails();
+            Assert.That(result, Is.TypeOf<PlatinumCustomer>());
+
         }
     }
 }
