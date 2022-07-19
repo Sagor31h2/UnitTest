@@ -1,6 +1,7 @@
 using NUnit.Framework;
 namespace Sparky
 {
+    [TestFixture]
     public class GradingCalculatorNUnitTest
     {
         private GradingCalculator _gradingCalculator;
