@@ -1,9 +1,26 @@
 ﻿namespace Sparky
 {
-    public class Customer
+    public interface ICustomer
     {
+        int Discount { get; set; }
+        string? Greet { get; set; }
+        int OrderTotal { get; set; }
+        bool IsPlatinum { get; set; }
+        string GreetByName(string firstName, string lastName);
+        CustomerType GetCustomerByDetails();
+
+    }
+    public class Customer : ICustomer
+    {
+        public int Discount { get; set; }
         public string? Greet { get; set; }
         public int OrderTotal { get; set; }
+        public bool IsPlatinum { get; set; }
+        public Customer()
+        {
+            Discount = 15;
+            IsPlatinum = false;
+        }
         public string GreetByName(string firstName, string lastName)
         {
             if (string.IsNullOrWhiteSpace(firstName))
