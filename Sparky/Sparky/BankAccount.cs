@@ -29,14 +29,13 @@
         //withdraw
         public bool Withdraw(int ammount)
         {
-            // _logbook.Message("Withdraw is invoked");
-
             if (balance >= ammount)
             {
+                _logbook.LogToDb("withdraw ammouny: " + ammount.ToString());
                 balance -= ammount;
-                return true;
+                return _logbook.LogBalanceAfterWithdrawal(balance);
             }
-            return false;
+            return _logbook.LogBalanceAfterWithdrawal(balance - ammount);
         }
 
     }
