@@ -1,5 +1,5 @@
-﻿using System;
-using Bongo.Models.ModelValidations;
+﻿using Bongo.Models.ModelValidations;
+using FluentAssertions;
 using NUnit.Framework;
 
 namespace Bongo.Models
@@ -22,7 +22,9 @@ namespace Bongo.Models
         public void DateValidator_NotValidDate_ReturnErrorMessage()
         {
             var result = new DateInFutureAttribute();
-            Assert.AreEqual("Date must be in the future", result.ErrorMessage);
+
+            result.ErrorMessage.Should().Be("Date must be in the future");
+            //Assert.AreEqual("Date must be in the future", result.ErrorMessage);
         }
     }
 }
